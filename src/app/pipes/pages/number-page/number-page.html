@@ -1,1 +1,23 @@
-<p>numbers-page works!</p>
+<section>
+  <p>Pipes númericos</p>
+</section>
+
+<div class="stats stats-vertical lg:stats-horizontal shadow w-full">
+  <div class="stat">
+    <div class="stat-title">Number (decimal pipe)</div>
+    <div class="stat-value">{{ totalSales() | number: '1.1-2' }}</div>
+    <div class="stat-desc">{{ totalSales() }}</div>
+  </div>
+
+  <div class="stat">
+    <div class="stat-title">Currency</div>
+    <div class="stat-value">{{ totalSales() | currency: 'MXN' : 'symbol-narrow' : '1.1-4' }}</div>
+    <div class="stat-desc">{{ totalSales() }}</div>
+  </div>
+
+  <div class="stat">
+    <div class="stat-title">Percent</div>
+    <div class="stat-value">{{ percent() | percent: '1.1-2' }}</div>
+    <div class="stat-desc">{{ percent() }}</div>
+  </div>
+</div>

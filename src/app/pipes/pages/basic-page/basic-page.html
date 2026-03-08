@@ -1,1 +1,95 @@
-<p>basic-page works!</p>
+<section>
+  <p>Pipes básicos</p>
+</section>
+
+<div class="stats stats-vertical lg:stats-horizontal shadow w-full">
+  <div class="stat">
+    <div class="stat-title">To lower</div>
+    <div class="stat-value text-lg">{{ upperName() | lowercase }}</div>
+    <div class="stat-desc">{{ upperName() }}</div>
+  </div>
+
+  <div class="stat">
+    <div class="stat-title">To upper</div>
+    <div class="stat-value text-lg">{{ lowerName() | uppercase }}</div>
+    <div class="stat-desc">{{ lowerName() }}</div>
+  </div>
+
+  <div class="stat">
+    <div class="stat-title">To title</div>
+    <div class="stat-value text-lg">{{ titleName() | titlecase }}</div>
+    <div class="stat-desc">{{ titleName() }}</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="stats stats-vertical lg:stats-horizontal shadow w-full">
+  <div class="stat">
+    <div class="stat-title">Date</div>
+    <div class="stat-value text-lg">{{ currentDate() | date }}</div>
+    <div class="stat-desc">{{ currentDate() }}</div>
+  </div>
+
+  <div class="stat">
+    <div class="stat-title">Date | long</div>
+    <div class="stat-value text-lg">{{ currentDate() | date: 'long' }}</div>
+    <div class="stat-desc">{{ currentDate() }}</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="stats stats-vertical lg:stats-horizontal shadow w-full">
+  <div class="stat">
+    <div class="stat-title">Date | "yyyy MM"</div>
+    <div class="stat-value text-lg">{{ currentDate() | date: 'yyyy MM' }}</div>
+    <div class="stat-desc">{{ currentDate() }}</div>
+  </div>
+
+  <div class="stat">
+    <div class="stat-title">Date | short</div>
+    <div class="stat-value text-lg">{{ currentDate() | date: 'short' }}</div>
+    <div class="stat-desc">{{ currentDate() }}</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="stats stats-vertical lg:stats-horizontal shadow w-full">
+  <div class="stat">
+    <div class="stat-title">Date | "dd/MM/yyyy"</div>
+    <div class="stat-value text-lg">{{ currentDate() | date: 'dd/MM/yyyy' }}</div>
+    <div class="stat-desc">{{ currentDate() }}</div>
+  </div>
+
+  <div class="stat">
+    <div class="stat-title">Date | "hh:mm:ss"</div>
+    <div class="stat-value text-lg">{{ currentDate() | date: 'hh:mm:ss' }}</div>
+    <div class="stat-desc">{{ currentDate() }}</div>
+  </div>
+
+  <div class="stat">
+    <div class="stat-title">Date | "EEEE dd, LLLL"</div>
+    <div class="stat-value text-lg">{{ currentDate() | date: 'EEEE dd, LLLL' }}</div>
+    <div class="stat-desc">{{ currentDate() }}</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<section class="flex flex-col sm:flex-row gap-4 my-2">
+  <h2 class="text-lg font-bold flex items-center justify-center gap-2">
+    Locale actual
+    <span class="badge badge-secondary">{{ localeService.currentLocale() }}</span>
+  </h2>
+  <button (click)="localeService.changeLocale('fr')" class="btn btn-primary">
+    Passe au français
+  </button>
+  <button (click)="localeService.changeLocale('en')" class="btn btn-primary">
+    Change to english
+  </button>
+  <button (click)="localeService.changeLocale('es-MX')" class="btn btn-primary">
+    Cambiar a español
+  </button>
+</section>
