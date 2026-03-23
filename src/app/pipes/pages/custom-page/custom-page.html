@@ -1,1 +1,70 @@
-<p>custom-page works!</p>
+<section class="my-3">
+  <h1 class="text-2xl">Pipes perzonalizados</h1>
+</section>
+
+<div class="stats shadow-xl">
+  <div class="stat">
+    <div class="text-lg">ToggleCase pipe</div>
+    <div class="text-3xl my-1">{{ name() | toggleCase: isUpperCase() }}</div>
+    <div class="text-sm my-1">{{ name() }}</div>
+
+    <button class="btn btn-primary" (click)="toggleCase()">ToggleCase</button>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<section class="mb-1">
+  <div class="flex gap-2 justify-end w-full flex-col sm:flex-row">
+    <input
+      #term
+      type="text"
+      placeholder="Buscar héroe"
+      class="input input-bordered w-full max-w-sm outline-none mr-auto"
+      (keyup)="search(term.value)"
+    />
+
+    <button (click)="sortBy('name')" class="btn btn-primary">Por nombre</button>
+    <button (click)="sortBy('canFly')" class="btn btn-accent">Por volar</button>
+    <button (click)="sortBy('color')" class="btn btn-secondary">Por color</button>
+    <button (click)="sortBy('creator')" class="btn btn-info">Por creador</button>
+  </div>
+</section>
+
+<section class="overflow-x-auto w-full">
+  <table class="table table-xs w-full">
+    <!-- head -->
+    <thead>
+      <th></th>
+      <th>Nombre</th>
+      <th>Puede volar</th>
+      <th>Color</th>
+      <th>Creador</th>
+    </thead>
+    <tbody>
+      @for (
+        hero of heroes() | heroFilter: searchTerm() | heroSortBy: sortByKey();
+        track hero.id;
+        let i = $index
+      ) {
+        <tr>
+          <td>{{ i + 1 }}</td>
+          <td>{{ hero.name }}</td>
+          <td>
+            <span
+              class="text-xs"
+              [class.text-success]="hero.canFly"
+              [class.text-accent]="!hero.canFly"
+            >
+              {{ hero.canFly | canFly }}
+            </span>
+          </td>
+          <td class="text-xs" [style.color]="hero.color | heroTextColor | titlecase">
+            {{ hero.color | heroColor }}
+          </td>
+          <td>{{ hero.creator | heroCreator }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</section>
